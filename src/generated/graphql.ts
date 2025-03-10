@@ -938,6 +938,11 @@ export type GetAmountSnapshotQueryVariables = Exact<{
 
 export type GetAmountSnapshotQuery = { __typename?: 'Query', krwSnapshot: { __typename?: 'AmountSnapshotNodeConnection', edges: Array<{ __typename?: 'AmountSnapshotNodeEdge', node: { __typename?: 'AmountSnapshotNode', id: any, amount: any, currency: CurrencyType, date: any, summary?: any | null } }> }, usdSnapshot: { __typename?: 'AmountSnapshotNodeConnection', edges: Array<{ __typename?: 'AmountSnapshotNodeEdge', node: { __typename?: 'AmountSnapshotNode', id: any, amount: any, currency: CurrencyType, date: any, summary?: any | null } }> } };
 
+export type GetRetailerListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetRetailerListQuery = { __typename?: 'Query', retailerRelay: { __typename?: 'RetailerNodeConnection', totalCount?: number | null, edges: Array<{ __typename?: 'RetailerNodeEdge', node: { __typename?: 'RetailerNode', id: any, name: string, category: TransactionCategory } }> } };
+
 export type GetTransactionListQueryVariables = Exact<{
   AccountID?: InputMaybe<Scalars['ID']['input']>;
   After?: InputMaybe<Scalars['String']['input']>;
@@ -1285,6 +1290,52 @@ export type GetAmountSnapshotQueryHookResult = ReturnType<typeof useGetAmountSna
 export type GetAmountSnapshotLazyQueryHookResult = ReturnType<typeof useGetAmountSnapshotLazyQuery>;
 export type GetAmountSnapshotSuspenseQueryHookResult = ReturnType<typeof useGetAmountSnapshotSuspenseQuery>;
 export type GetAmountSnapshotQueryResult = Apollo.QueryResult<GetAmountSnapshotQuery, GetAmountSnapshotQueryVariables>;
+export const GetRetailerListDocument = gql`
+    query GetRetailerList {
+  retailerRelay {
+    edges {
+      node {
+        id
+        name
+        category
+      }
+    }
+    totalCount
+  }
+}
+    `;
+
+/**
+ * __useGetRetailerListQuery__
+ *
+ * To run a query within a React component, call `useGetRetailerListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetRetailerListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetRetailerListQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetRetailerListQuery(baseOptions?: Apollo.QueryHookOptions<GetRetailerListQuery, GetRetailerListQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetRetailerListQuery, GetRetailerListQueryVariables>(GetRetailerListDocument, options);
+      }
+export function useGetRetailerListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRetailerListQuery, GetRetailerListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetRetailerListQuery, GetRetailerListQueryVariables>(GetRetailerListDocument, options);
+        }
+export function useGetRetailerListSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetRetailerListQuery, GetRetailerListQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetRetailerListQuery, GetRetailerListQueryVariables>(GetRetailerListDocument, options);
+        }
+export type GetRetailerListQueryHookResult = ReturnType<typeof useGetRetailerListQuery>;
+export type GetRetailerListLazyQueryHookResult = ReturnType<typeof useGetRetailerListLazyQuery>;
+export type GetRetailerListSuspenseQueryHookResult = ReturnType<typeof useGetRetailerListSuspenseQuery>;
+export type GetRetailerListQueryResult = Apollo.QueryResult<GetRetailerListQuery, GetRetailerListQueryVariables>;
 export const GetTransactionListDocument = gql`
     query GetTransactionList($AccountID: ID, $After: String, $First: Int) {
   transactionRelay(

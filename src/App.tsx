@@ -17,6 +17,7 @@ import { NotFound } from './pages/NotFound';
 import { Navigation } from './components/Navigation';
 import { Box, CssBaseline } from '@mui/material';
 import { client } from './lib/apollo';
+import { CreateTransactionPage } from './pages/transactions/CreateTransaction';
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
               <Route path="/taxes" element={<Tax />} />
               <Route path="/charts" element={<Charts />} />
               <Route path="/shopping" element={<Shopping />} />
+              <Route path="/transactions/create" element={<CreateTransactionPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Box>
