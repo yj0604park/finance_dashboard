@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Box, Typography, Paper, Container, Grid, MenuItem, FormControl, InputLabel, Select, SelectChangeEvent, Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Alert } from '@mui/material';
 import { useGetBankNodeWithBalanceQuery } from '../../generated/graphql';
-import { useCreateTransaction, useRetailerList } from '../../hooks';
+import { useRetailerList } from '../../hooks';
 import { CreateTransaction as TransactionForm } from '../../components/transaction/CreateTransaction';
 import AddIcon from '@mui/icons-material/Add';
 import { useMutation } from '@apollo/client';

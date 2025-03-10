@@ -18,6 +18,8 @@ import { Navigation } from './components/Navigation';
 import { Box, CssBaseline } from '@mui/material';
 import { client } from './lib/apollo';
 import { CreateTransactionPage } from './pages/transactions/CreateTransaction';
+import TransactionList from './pages/transactions/TransactionList';
+import RetailerDetail from './pages/retailer/RetailerDetail';
 
 function App() {
   return (
@@ -60,6 +62,8 @@ function App() {
               <Route path="/charts" element={<Charts />} />
               <Route path="/shopping" element={<Shopping />} />
               <Route path="/transactions/create" element={<CreateTransactionPage />} />
+              <Route path="/transactions" element={<TransactionList />} />
+              <Route path="/retailer/:id" element={<RetailerDetail />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Box>
