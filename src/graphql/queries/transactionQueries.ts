@@ -48,3 +48,13 @@ query GetTransactionList($AccountID: ID, $After: String, $First: Int) {
   }
 }
 `;
+
+export const GET_RETAILER_CATEGORIES = gql`
+  query GetTransactionCategory {
+    __type(name: "TransactionCategory") {
+      enumValues {
+        name
+      }
+    }
+  }
+`;

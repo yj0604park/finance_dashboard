@@ -1,7 +1,5 @@
-import { useQuery } from '@apollo/client';
-import { GET_RETAILER_LIST } from '../graphql/queries/retailerQueries';
 import { useEffect, useMemo, useState, useCallback } from 'react';
-
+import { useGetRetailerListQuery } from '../generated/graphql';
 export interface RetailerOption {
   id: string;
   name: string;
@@ -15,7 +13,7 @@ export const useRetailerList = () => {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   
   // 첫 페이지 로딩
-  const { data, loading, error, refetch, fetchMore } = useQuery(GET_RETAILER_LIST, {
+  const { data, loading, error, refetch, fetchMore } = useGetRetailerListQuery({
     variables: { first: PAGE_SIZE },
     notifyOnNetworkStatusChange: true,
   });

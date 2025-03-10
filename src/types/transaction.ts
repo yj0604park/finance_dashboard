@@ -6,6 +6,7 @@ export interface TransactionCreationData {
   note: string;
   retailerId?: string | number;
   id?: number;
+  type: 'INCOME' | 'EXPENSE' | 'TRANSFER';
 }
 
 export interface RetailerSelectionProps {

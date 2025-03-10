@@ -7,6 +7,7 @@ import { AmountChart } from './components/AmountChart';
 import { Overview } from './components/Overview';
 import { AccountTable } from '../../components/table/AccountTable';
 import { useGetBankNodeWithBalanceQuery } from '../../generated/graphql';
+import { BankNode } from '../../types/bank';
 
 export const Dashboard = () => {
   const { banks, loading: banksLoading, error: banksError } = useBankData();
@@ -41,7 +42,7 @@ export const Dashboard = () => {
 
         <AmountChart />
 
-        <BankList banks={banks} />
+        <BankList banks={banks as BankNode[]} />
 
         <Stack spacing={2}>
           <Typography 

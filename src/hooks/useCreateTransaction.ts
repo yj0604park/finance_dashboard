@@ -16,10 +16,11 @@ export const useCreateTransaction = ({ accountId }: UseCreateTransactionProps) =
   const [defaultTransactionCreationData, setDefaultTransactionCreationData] =
     useState<TransactionCreationData>({
       amount: null,
-      date: today, // 오늘 날짜로 초기화
+      date: '',
       accountId: accountId,
       isInternal: false,
-      note: ''
+      note: '',
+      type: 'EXPENSE'  // 기본값을 지출로 설정
     });
 
   const [
@@ -73,7 +74,7 @@ export const useCreateTransaction = ({ accountId }: UseCreateTransactionProps) =
 
   const onRetailerChange = (id: number) => {
     return (
-      e: ChangeEvent<HTMLInputElement>,
+      _e: ChangeEvent<HTMLInputElement>,
       value: RetailerSelectionPropsOrNull
     ) => {
       setTransactionCreationDataList(

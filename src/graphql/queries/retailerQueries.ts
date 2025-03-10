@@ -19,13 +19,12 @@ export const GET_RETAILER_LIST = gql`
   }
 `;
 
-export const GET_RETAILER_TYPE = gql`
+export const GET_RETAILER_TYPES = gql`
   query GetRetailerType {
     __type(name: "RetailerType") {
-      name
       enumValues {
         name
       }
     }
   }
-`; 
+`;

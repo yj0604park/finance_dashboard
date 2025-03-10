@@ -890,6 +890,123 @@ export type TransactionOrder = {
   id?: InputMaybe<Ordering>;
 };
 
+/** One possible value for a given Enum. Enum values are unique values, not a placeholder for a string or numeric value. However an Enum value is returned in a JSON response as a string. */
+export type __EnumValue = {
+  __typename?: '__EnumValue';
+  name: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  isDeprecated: Scalars['Boolean']['output'];
+  deprecationReason?: Maybe<Scalars['String']['output']>;
+};
+
+/** Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type. */
+export type __Field = {
+  __typename?: '__Field';
+  name: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  args: Array<__InputValue>;
+  type: __Type;
+  isDeprecated: Scalars['Boolean']['output'];
+  deprecationReason?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type. */
+export type __FieldArgsArgs = {
+  includeDeprecated?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Arguments provided to Fields or Directives and the input fields of an InputObject are represented as Input Values which describe their type and optionally a default value. */
+export type __InputValue = {
+  __typename?: '__InputValue';
+  name: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  type: __Type;
+  /** A GraphQL-formatted string representing the default value for this input value. */
+  defaultValue?: Maybe<Scalars['String']['output']>;
+  isDeprecated: Scalars['Boolean']['output'];
+  deprecationReason?: Maybe<Scalars['String']['output']>;
+};
+
+/**
+ * The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.
+ *
+ * Depending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByURL`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.
+ */
+export type __Type = {
+  __typename?: '__Type';
+  kind: __TypeKind;
+  name?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  specifiedByURL?: Maybe<Scalars['String']['output']>;
+  fields?: Maybe<Array<__Field>>;
+  interfaces?: Maybe<Array<__Type>>;
+  possibleTypes?: Maybe<Array<__Type>>;
+  enumValues?: Maybe<Array<__EnumValue>>;
+  inputFields?: Maybe<Array<__InputValue>>;
+  ofType?: Maybe<__Type>;
+  isOneOf?: Maybe<Scalars['Boolean']['output']>;
+};
+
+
+/**
+ * The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.
+ *
+ * Depending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByURL`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.
+ */
+export type __TypeFieldsArgs = {
+  includeDeprecated?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/**
+ * The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.
+ *
+ * Depending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByURL`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.
+ */
+export type __TypeEnumValuesArgs = {
+  includeDeprecated?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/**
+ * The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.
+ *
+ * Depending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByURL`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.
+ */
+export type __TypeInputFieldsArgs = {
+  includeDeprecated?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** An enum describing what kind of type a given `__Type` is. */
+export enum __TypeKind {
+  /** Indicates this type is a scalar. */
+  Scalar = 'SCALAR',
+  /** Indicates this type is an object. `fields` and `interfaces` are valid fields. */
+  Object = 'OBJECT',
+  /** Indicates this type is an interface. `fields`, `interfaces`, and `possibleTypes` are valid fields. */
+  Interface = 'INTERFACE',
+  /** Indicates this type is a union. `possibleTypes` is a valid field. */
+  Union = 'UNION',
+  /** Indicates this type is an enum. `enumValues` is a valid field. */
+  Enum = 'ENUM',
+  /** Indicates this type is an input object. `inputFields` is a valid field. */
+  InputObject = 'INPUT_OBJECT',
+  /** Indicates this type is a list. `ofType` is a valid field. */
+  List = 'LIST',
+  /** Indicates this type is a non-null. `ofType` is a valid field. */
+  NonNull = 'NON_NULL'
+}
+
+export type CreateRetailerMutationVariables = Exact<{
+  name: Scalars['String']['input'];
+  type: RetailerType;
+  category: TransactionCategory;
+}>;
+
+
+export type CreateRetailerMutation = { __typename?: 'Mutation', createRetailer: { __typename?: 'RetailerNode', id: any, name: string, category: TransactionCategory } };
+
 export type CreateTransactionMutationVariables = Exact<{
   amount: Scalars['Decimal']['input'];
   date: Scalars['Date']['input'];
@@ -938,10 +1055,18 @@ export type GetAmountSnapshotQueryVariables = Exact<{
 
 export type GetAmountSnapshotQuery = { __typename?: 'Query', krwSnapshot: { __typename?: 'AmountSnapshotNodeConnection', edges: Array<{ __typename?: 'AmountSnapshotNodeEdge', node: { __typename?: 'AmountSnapshotNode', id: any, amount: any, currency: CurrencyType, date: any, summary?: any | null } }> }, usdSnapshot: { __typename?: 'AmountSnapshotNodeConnection', edges: Array<{ __typename?: 'AmountSnapshotNodeEdge', node: { __typename?: 'AmountSnapshotNode', id: any, amount: any, currency: CurrencyType, date: any, summary?: any | null } }> } };
 
-export type GetRetailerListQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetRetailerListQueryVariables = Exact<{
+  first?: InputMaybe<Scalars['Int']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+}>;
 
 
-export type GetRetailerListQuery = { __typename?: 'Query', retailerRelay: { __typename?: 'RetailerNodeConnection', totalCount?: number | null, edges: Array<{ __typename?: 'RetailerNodeEdge', node: { __typename?: 'RetailerNode', id: any, name: string, category: TransactionCategory } }> } };
+export type GetRetailerListQuery = { __typename?: 'Query', retailerRelay: { __typename?: 'RetailerNodeConnection', totalCount?: number | null, edges: Array<{ __typename?: 'RetailerNodeEdge', node: { __typename?: 'RetailerNode', id: any, name: string, category: TransactionCategory } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, endCursor?: string | null } } };
+
+export type GetRetailerTypeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetRetailerTypeQuery = { __typename?: 'Query', __type?: { __typename?: '__Type', enumValues?: Array<{ __typename?: '__EnumValue', name: string }> | null } | null };
 
 export type GetTransactionListQueryVariables = Exact<{
   AccountID?: InputMaybe<Scalars['ID']['input']>;
@@ -952,7 +1077,49 @@ export type GetTransactionListQueryVariables = Exact<{
 
 export type GetTransactionListQuery = { __typename?: 'Query', transactionRelay: { __typename?: 'TransactionNodeConnection', totalCount?: number | null, edges: Array<{ __typename?: 'TransactionNodeEdge', cursor: string, node: { __typename?: 'TransactionNode', id: any, amount: any, balance?: any | null, date: any, isInternal: boolean, requiresDetail: boolean, reviewed: boolean, note?: string | null, type: TransactionCategory, relatedTransaction?: { __typename?: 'TransactionNode', id: any } | null, retailer?: { __typename?: 'RetailerNode', id: any, name: string } | null } }> }, accountRelay: { __typename?: 'AccountNodeConnection', edges: Array<{ __typename?: 'AccountNodeEdge', node: { __typename?: 'AccountNode', currency: CurrencyType, type: AccountType, name: string, isActive: boolean, amount: any, bank: { __typename?: 'BankNode', id: any, name: string } } }> } };
 
+export type GetTransactionCategoryQueryVariables = Exact<{ [key: string]: never; }>;
 
+
+export type GetTransactionCategoryQuery = { __typename?: 'Query', __type?: { __typename?: '__Type', enumValues?: Array<{ __typename?: '__EnumValue', name: string }> | null } | null };
+
+
+export const CreateRetailerDocument = gql`
+    mutation CreateRetailer($name: String!, $type: RetailerType!, $category: TransactionCategory!) {
+  createRetailer(data: {name: $name, type: $type, category: $category}) {
+    id
+    name
+    category
+  }
+}
+    `;
+export type CreateRetailerMutationFn = Apollo.MutationFunction<CreateRetailerMutation, CreateRetailerMutationVariables>;
+
+/**
+ * __useCreateRetailerMutation__
+ *
+ * To run a mutation, you first call `useCreateRetailerMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateRetailerMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createRetailerMutation, { data, loading, error }] = useCreateRetailerMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *      type: // value for 'type'
+ *      category: // value for 'category'
+ *   },
+ * });
+ */
+export function useCreateRetailerMutation(baseOptions?: Apollo.MutationHookOptions<CreateRetailerMutation, CreateRetailerMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateRetailerMutation, CreateRetailerMutationVariables>(CreateRetailerDocument, options);
+      }
+export type CreateRetailerMutationHookResult = ReturnType<typeof useCreateRetailerMutation>;
+export type CreateRetailerMutationResult = Apollo.MutationResult<CreateRetailerMutation>;
+export type CreateRetailerMutationOptions = Apollo.BaseMutationOptions<CreateRetailerMutation, CreateRetailerMutationVariables>;
 export const CreateTransactionDocument = gql`
     mutation CreateTransaction($amount: Decimal!, $date: Date!, $accountId: ID, $isInternal: Boolean, $note: String, $retailerId: ID) {
   createTransaction(
@@ -1291,8 +1458,8 @@ export type GetAmountSnapshotLazyQueryHookResult = ReturnType<typeof useGetAmoun
 export type GetAmountSnapshotSuspenseQueryHookResult = ReturnType<typeof useGetAmountSnapshotSuspenseQuery>;
 export type GetAmountSnapshotQueryResult = Apollo.QueryResult<GetAmountSnapshotQuery, GetAmountSnapshotQueryVariables>;
 export const GetRetailerListDocument = gql`
-    query GetRetailerList {
-  retailerRelay {
+    query GetRetailerList($first: Int, $after: String) {
+  retailerRelay(first: $first, after: $after) {
     edges {
       node {
         id
@@ -1301,6 +1468,10 @@ export const GetRetailerListDocument = gql`
       }
     }
     totalCount
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
   }
 }
     `;
@@ -1317,6 +1488,8 @@ export const GetRetailerListDocument = gql`
  * @example
  * const { data, loading, error } = useGetRetailerListQuery({
  *   variables: {
+ *      first: // value for 'first'
+ *      after: // value for 'after'
  *   },
  * });
  */
@@ -1336,6 +1509,47 @@ export type GetRetailerListQueryHookResult = ReturnType<typeof useGetRetailerLis
 export type GetRetailerListLazyQueryHookResult = ReturnType<typeof useGetRetailerListLazyQuery>;
 export type GetRetailerListSuspenseQueryHookResult = ReturnType<typeof useGetRetailerListSuspenseQuery>;
 export type GetRetailerListQueryResult = Apollo.QueryResult<GetRetailerListQuery, GetRetailerListQueryVariables>;
+export const GetRetailerTypeDocument = gql`
+    query GetRetailerType {
+  __type(name: "RetailerType") {
+    enumValues {
+      name
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetRetailerTypeQuery__
+ *
+ * To run a query within a React component, call `useGetRetailerTypeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetRetailerTypeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetRetailerTypeQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetRetailerTypeQuery(baseOptions?: Apollo.QueryHookOptions<GetRetailerTypeQuery, GetRetailerTypeQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetRetailerTypeQuery, GetRetailerTypeQueryVariables>(GetRetailerTypeDocument, options);
+      }
+export function useGetRetailerTypeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRetailerTypeQuery, GetRetailerTypeQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetRetailerTypeQuery, GetRetailerTypeQueryVariables>(GetRetailerTypeDocument, options);
+        }
+export function useGetRetailerTypeSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetRetailerTypeQuery, GetRetailerTypeQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetRetailerTypeQuery, GetRetailerTypeQueryVariables>(GetRetailerTypeDocument, options);
+        }
+export type GetRetailerTypeQueryHookResult = ReturnType<typeof useGetRetailerTypeQuery>;
+export type GetRetailerTypeLazyQueryHookResult = ReturnType<typeof useGetRetailerTypeLazyQuery>;
+export type GetRetailerTypeSuspenseQueryHookResult = ReturnType<typeof useGetRetailerTypeSuspenseQuery>;
+export type GetRetailerTypeQueryResult = Apollo.QueryResult<GetRetailerTypeQuery, GetRetailerTypeQueryVariables>;
 export const GetTransactionListDocument = gql`
     query GetTransactionList($AccountID: ID, $After: String, $First: Int) {
   transactionRelay(
@@ -1419,3 +1633,44 @@ export type GetTransactionListQueryHookResult = ReturnType<typeof useGetTransact
 export type GetTransactionListLazyQueryHookResult = ReturnType<typeof useGetTransactionListLazyQuery>;
 export type GetTransactionListSuspenseQueryHookResult = ReturnType<typeof useGetTransactionListSuspenseQuery>;
 export type GetTransactionListQueryResult = Apollo.QueryResult<GetTransactionListQuery, GetTransactionListQueryVariables>;
+export const GetTransactionCategoryDocument = gql`
+    query GetTransactionCategory {
+  __type(name: "TransactionCategory") {
+    enumValues {
+      name
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetTransactionCategoryQuery__
+ *
+ * To run a query within a React component, call `useGetTransactionCategoryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetTransactionCategoryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetTransactionCategoryQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetTransactionCategoryQuery(baseOptions?: Apollo.QueryHookOptions<GetTransactionCategoryQuery, GetTransactionCategoryQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetTransactionCategoryQuery, GetTransactionCategoryQueryVariables>(GetTransactionCategoryDocument, options);
+      }
+export function useGetTransactionCategoryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTransactionCategoryQuery, GetTransactionCategoryQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetTransactionCategoryQuery, GetTransactionCategoryQueryVariables>(GetTransactionCategoryDocument, options);
+        }
+export function useGetTransactionCategorySuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetTransactionCategoryQuery, GetTransactionCategoryQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetTransactionCategoryQuery, GetTransactionCategoryQueryVariables>(GetTransactionCategoryDocument, options);
+        }
+export type GetTransactionCategoryQueryHookResult = ReturnType<typeof useGetTransactionCategoryQuery>;
+export type GetTransactionCategoryLazyQueryHookResult = ReturnType<typeof useGetTransactionCategoryLazyQuery>;
+export type GetTransactionCategorySuspenseQueryHookResult = ReturnType<typeof useGetTransactionCategorySuspenseQuery>;
+export type GetTransactionCategoryQueryResult = Apollo.QueryResult<GetTransactionCategoryQuery, GetTransactionCategoryQueryVariables>;
