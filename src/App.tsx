@@ -20,6 +20,7 @@ import { client } from './lib/apollo';
 import { CreateTransactionPage } from './pages/transactions/CreateTransaction';
 import TransactionList from './pages/transactions/TransactionList';
 import RetailerDetail from './pages/retailer/RetailerDetail';
+import { Layout } from './components/layout/Layout';
 
 function App() {
   return (
@@ -39,13 +40,7 @@ function App() {
           overflow: 'hidden'
         }}>
           <Navigation />
-          <Box component="main" sx={{ 
-            flexGrow: 1, 
-            width: '100%',
-            px: { xs: 2, sm: 3, md: 4 },
-            py: 3,
-            boxSizing: 'border-box'
-          }}>
+          <Layout>
             <Routes>
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<Dashboard />} />
@@ -66,7 +61,7 @@ function App() {
               <Route path="/retailer/:id" element={<RetailerDetail />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
-          </Box>
+          </Layout>
         </Box>
       </BrowserRouter>
     </ApolloProvider>
