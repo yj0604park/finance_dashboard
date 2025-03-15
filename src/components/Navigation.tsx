@@ -19,7 +19,6 @@ export const Navigation = () => {
           <Button
             onClick={() => navigate('/')}
             color={isActive('/') ? 'primary' : 'inherit'}
-            sx={{ mr: 2 }}
           >
             대시보드
           </Button>
@@ -32,14 +31,12 @@ export const Navigation = () => {
           <Button
             onClick={() => navigate('/transactions')}
             color={isActive('/transactions') ? 'primary' : 'inherit'}
-            sx={{ mr: 2 }}
           >
             거래내역
           </Button>
           <Button
             onClick={() => navigate('/transactions/create')}
             color={isActive('/transactions/create') ? 'primary' : 'inherit'}
-            sx={{ mr: 2 }}
           >
             거래 생성
           </Button>

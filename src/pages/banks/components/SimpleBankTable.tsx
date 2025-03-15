@@ -19,6 +19,7 @@ import {
     type ColumnDef
 } from '@tanstack/react-table';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type BankNode = GetBankSimpleListQuery['bankRelay']['edges'][0]['node'];
 
@@ -28,14 +29,25 @@ interface BankTableProps {
 
 export const SimpleBankTable = ({ banks }: BankTableProps) => {
     const [sorting, setSorting] = useState([{ id: 'name', desc: false }]);
+    const navigate = useNavigate();
     
     const columns: ColumnDef<BankNode, any>[] = [
         {
             id: 'name',
             accessorKey: 'name',
             header: '은행명',
-            cell: ({ getValue }) => (
-                <Typography variant="body2">
+            cell: ({ getValue, row }) => (
+                <Typography 
+                    variant="body2" 
+                    sx={{ 
+                        cursor: 'pointer',
+                        '&:hover': { 
+                            textDecoration: 'underline',
+                            color: 'primary.main'
+                        }
+                    }}
+                    onClick={() => navigate(`/banks/${row.original.id}`)}
+                >
                     {getValue() as string}
                 </Typography>
             )
