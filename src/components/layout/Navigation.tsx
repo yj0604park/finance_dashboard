@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import AddIcon from '@mui/icons-material/Add';
@@ -19,8 +20,9 @@ import StoreIcon from '@mui/icons-material/Store';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import CategoryIcon from '@mui/icons-material/Category';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
-export const Navigation = () => {
+export const SideNavigation = () => {
   const navigate = useNavigate();
   const [openAccounts, setOpenAccounts] = useState(true);
   const [openRetailers, setOpenRetailers] = useState(false);
@@ -42,6 +44,7 @@ export const Navigation = () => {
 
   return (
     <Box sx={{ width: '100%' }}>
+      
       <List
         component="nav"
         subheader={
@@ -50,16 +53,29 @@ export const Navigation = () => {
           </ListSubheader>
         }
       >
+        <ListItemButton onClick={() => navigate('/dashboard')}>
+          <ListItemIcon>
+            <DashboardIcon />
+          </ListItemIcon>
+          <ListItemText primary="대시보드" />
+        </ListItemButton>
+
         {/* 계좌 관리 섹션 */}
         <ListItemButton onClick={() => handleClick('accounts')}>
           <ListItemIcon>
-            <AccountBalanceIcon />
+            <PointOfSaleIcon />
           </ListItemIcon>
           <ListItemText primary="계좌 관리" />
           {openAccounts ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
         <Collapse in={openAccounts} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
+            <ListItemButton sx={{ pl: 4 }} onClick={() => navigate('/banks')}>
+              <ListItemIcon>
+                <AccountBalanceIcon />
+              </ListItemIcon>
+              <ListItemText primary="은행 목록" />
+            </ListItemButton>
             <ListItemButton sx={{ pl: 4 }} onClick={() => navigate('/banks')}>
               <ListItemIcon>
                 <AccountBalanceWalletIcon />

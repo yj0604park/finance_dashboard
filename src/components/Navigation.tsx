@@ -29,18 +29,6 @@ export const Navigation = () => {
             은행
           </Button>
           <Button
-            onClick={() => navigate('/transactions')}
-            color={isActive('/transactions') ? 'primary' : 'inherit'}
-          >
-            거래내역
-          </Button>
-          <Button
-            onClick={() => navigate('/transactions/create')}
-            color={isActive('/transactions/create') ? 'primary' : 'inherit'}
-          >
-            거래 생성
-          </Button>
-          <Button
             onClick={() => navigate('/validation')}
             color={isActive('/validation') ? 'primary' : 'inherit'}
           >

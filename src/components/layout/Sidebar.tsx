@@ -1,5 +1,5 @@
 import { Box, Drawer, styled } from '@mui/material';
-import { Navigation } from './Navigation';
+import { SideNavigation } from './Navigation';
 
 const drawerWidth = 240;
 
@@ -20,7 +20,7 @@ export const Sidebar = () => {
       anchor="left"
     >
       <Box sx={{ overflow: 'auto', mt: 2 }}>
-        <Navigation />
+        <SideNavigation />
       </Box>
     </StyledDrawer>
   );
