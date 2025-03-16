@@ -21,13 +21,22 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import CategoryIcon from '@mui/icons-material/Category';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import SettingsIcon from '@mui/icons-material/Settings';
+import PersonIcon from '@mui/icons-material/Person';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CalculateIcon from '@mui/icons-material/Calculate';
+import PriceChangeIcon from '@mui/icons-material/PriceChange';
+import LocalAtmIcon from '@mui/icons-material/LocalAtm';
+import AssessmentIcon from '@mui/icons-material/Assessment';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 export const SideNavigation = () => {
   const navigate = useNavigate();
   const [openAccounts, setOpenAccounts] = useState(true);
   const [openRetailers, setOpenRetailers] = useState(false);
   const [openStatistics, setOpenStatistics] = useState(false);
-
+  const [openManagement, setOpenManagement] = useState(false);
+  const [openAssets, setOpenAssets] = useState(false);
   const handleClick = (section: string) => {
     switch (section) {
       case 'accounts':
@@ -38,6 +47,12 @@ export const SideNavigation = () => {
         break;
       case 'statistics':
         setOpenStatistics(!openStatistics);
+        break;
+      case 'management':
+        setOpenManagement(!openManagement);
+        break;
+      case 'assets':
+        setOpenAssets(!openAssets);
         break;
     }
   };
@@ -97,6 +112,43 @@ export const SideNavigation = () => {
           </List>
         </Collapse>
 
+        {/* 자산 관리 섹션 */}
+        <ListItemButton onClick={() => handleClick('assets')}>
+          <ListItemIcon>
+            <CalculateIcon />
+          </ListItemIcon>
+          <ListItemText primary="자산 관리" />
+          {openAssets ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={openAssets} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItemButton sx={{ pl: 4 }} onClick={() => navigate('/assets')}>
+              <ListItemIcon>
+                <AccountBalanceIcon />
+              </ListItemIcon>
+              <ListItemText primary="자산 목록" />
+            </ListItemButton>
+            <ListItemButton sx={{ pl: 4 }} onClick={() => navigate('/income')}>
+              <ListItemIcon>
+                <TrendingUpIcon />
+              </ListItemIcon>
+              <ListItemText primary="소득" />
+            </ListItemButton>
+            <ListItemButton sx={{ pl: 4 }} onClick={() => navigate('/investments')}>
+              <ListItemIcon>
+                <PriceChangeIcon />
+              </ListItemIcon>
+              <ListItemText primary="투자" />
+            </ListItemButton>
+            <ListItemButton sx={{ pl: 4 }} onClick={() => navigate('/loans')}>
+              <ListItemIcon>
+                <LocalAtmIcon />
+              </ListItemIcon>
+              <ListItemText primary="대출" />
+            </ListItemButton>
+          </List>
+        </Collapse>
+
         {/* 판매자 관리 섹션 */}
         <ListItemButton onClick={() => handleClick('retailers')}>
           <ListItemIcon>
@@ -107,6 +159,13 @@ export const SideNavigation = () => {
         </ListItemButton>
         <Collapse in={openRetailers} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
+            <ListItemButton sx={{ pl: 4 }} onClick={() => navigate('/shopping')}>
+              <ListItemIcon>
+                <ShoppingCartIcon />
+              </ListItemIcon>
+              <ListItemText primary="쇼핑" />
+            </ListItemButton>
+
             <ListItemButton sx={{ pl: 4 }} onClick={() => navigate('/retailers')}>
               <ListItemIcon>
                 <StoreIcon />
@@ -143,6 +202,43 @@ export const SideNavigation = () => {
                 <CategoryIcon />
               </ListItemIcon>
               <ListItemText primary="카테고리별 통계" />
+            </ListItemButton>
+            <ListItemButton sx={{ pl: 4 }} onClick={() => navigate('/reports')}>
+              <ListItemIcon>
+                <AssessmentIcon />
+              </ListItemIcon>
+              <ListItemText primary="보고서" />
+            </ListItemButton>
+            <ListItemButton sx={{ pl: 4 }} onClick={() => navigate('/charts')}>
+              <ListItemIcon>
+                <BarChartIcon />
+              </ListItemIcon>
+              <ListItemText primary="차트" />
+            </ListItemButton>
+          </List>
+        </Collapse>
+
+        {/* 관리 섹션 */}
+        <ListItemButton onClick={() => handleClick('management')}>
+          <ListItemIcon>
+            <SettingsIcon />
+          </ListItemIcon>
+          <ListItemText primary="관리" />
+          {openManagement ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={openManagement} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItemButton sx={{ pl: 4 }} onClick={() => navigate('/management/users')}>
+              <ListItemIcon>
+                <PersonIcon />
+              </ListItemIcon>
+              <ListItemText primary="사용자 관리" />
+            </ListItemButton>
+            <ListItemButton sx={{ pl: 4 }} onClick={() => navigate('/validation')}>
+              <ListItemIcon>
+                <CheckCircleIcon />
+              </ListItemIcon>
+              <ListItemText primary="데이터 검증" />
             </ListItemButton>
           </List>
         </Collapse>

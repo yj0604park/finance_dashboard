@@ -6,8 +6,7 @@ import { useBankData } from '../../hooks/useBankData';
 import { AmountChart } from './components/AmountChart';
 import { Overview } from './components/Overview';
 import { AccountTable } from '../../components/table/AccountTable';
-import { useGetBankNodeWithBalanceQuery } from '../../generated/graphql';
-import { BankNode } from '../../types/bank';
+import { BankNode, useGetBankNodeWithBalanceQuery } from '../../generated/graphql';
 
 export const Dashboard = () => {
   const { banks, loading: banksLoading, error: banksError } = useBankData();
@@ -25,19 +24,8 @@ export const Dashboard = () => {
     }))
   ) ?? [];
 
-  return (
-    <Container>
+    return (
       <Stack spacing={3}>
-        <Typography 
-          variant="h2" 
-          sx={{ 
-            fontSize: '1.4rem',
-            fontWeight: 600,
-          }}
-        >
-          대시보드
-        </Typography>
-
         <Overview accounts={accounts} />
 
         <AmountChart />
@@ -57,6 +45,5 @@ export const Dashboard = () => {
           <AccountTable accounts={accounts} />
         </Stack>
       </Stack>
-    </Container>
   );
 }; 

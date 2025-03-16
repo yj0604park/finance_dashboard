@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import { Sidebar } from './Sidebar';
+import { TopNavigation } from './TopNavigation';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -7,19 +8,21 @@ interface LayoutProps {
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <Box sx={{ display: 'flex' }}>
-      <Sidebar />
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          p: 3,
-          width: { sm: `calc(100% - 240px)` },
-          ml: { sm: '240px' },
-        }}
-      >
-        {children}
+    <>
+      <TopNavigation />
+      <Box sx={{ display: 'flex' }}>
+        <Sidebar />
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            p: 2,
+            width: { sm: `calc(100% - 240px)` }
+          }}
+        >
+          {children}
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 }; 

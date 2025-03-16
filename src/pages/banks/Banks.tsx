@@ -25,16 +25,6 @@ export const Banks = () => {
 
   return (
     <>
-      <Typography 
-        variant="h2" 
-        sx={{ 
-          fontSize: '1.4rem',
-          fontWeight: 600,
-          mb: 2
-        }}
-      >
-        은행 목록
-      </Typography>
       <Box sx={{ mb: 4 }}>
         <SimpleBankTable banks={bankLists} />
       </Box>

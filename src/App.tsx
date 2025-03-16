@@ -14,7 +14,6 @@ import { Tax } from './pages/tax/Tax';
 import { Charts } from './pages/charts/Charts';
 import { Shopping } from './pages/shopping/Shopping';
 import { NotFound } from './pages/NotFound';
-import { Navigation } from './components/Navigation';
 import { Box, CssBaseline } from '@mui/material';
 import { client } from './lib/apollo';
 import { CreateTransactionPage } from './pages/transactions/CreateTransaction';
@@ -39,7 +38,6 @@ function App() {
           boxSizing: 'border-box',
           overflow: 'hidden'
         }}>
-          <Navigation />
           <Layout>
             <Routes>
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
